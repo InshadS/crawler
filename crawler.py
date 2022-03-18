@@ -38,10 +38,13 @@ def crawl():
         print(name, "   :   ",link)
         songs = get_songs(link)
         for song, song_link in songs:
-            print("\n-----------------------------\n",song,"\n-----------------------------\n")
-            lyrics = get_lyrics(song_link)
-            print (lyrics,"\n\n*****************************")
-        print("DONE")
+            with open('lyrics.txt', 'a') as lyric:
+                lyrics = get_lyrics(song_link)
+                lyric.write("\n-----------------------------\n")
+                lyric.write(song)
+                lyric.write("\n-----------------------------\n")
+                lyric.write(lyrics)
+                lyric.write("\n\n*****************************")
     
 if __name__=="__main__":
     crawl()
